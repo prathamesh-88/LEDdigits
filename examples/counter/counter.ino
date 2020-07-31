@@ -1,6 +1,6 @@
 #include<LEDdigits.h>
 
-LEDdigits led(7, 3, 4, 5, 6, 2, 8, 13, 9, 10, 11, 12);
+LEDdigits led(COMMON_ANODE,7, 3, 4, 5, 6, 2, 8, 13, 9, 10, 11, 12);
 void setup() {
   // put your setup code here, to run once:
   led.setPins(4);

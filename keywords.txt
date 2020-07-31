@@ -2,7 +2,7 @@
 # Syntax Coloring Map For LEDdigits
 
 # Datatypes (KEYWORD1)
-LEDdigits    KEYWORD1
+LEDdigits   KEYWORD1
 
 # Methods and Functions (KEYWORD2)
 setPins	  KEYWORD2
@@ -12,5 +12,8 @@ display	  KEYWORD2
 # Instances (KEYWORD2)
 
 # Constants (LITERAL1)
+
+COMMON_ANODE    LITERAL1
+COMMON_CATHODE  LITERAL1
 
 

@@ -1,16 +1,19 @@
 #include <Arduino.h>
 #include <LEDdigits.h>
+#define COMMON_ANODE  0
+#define COMMON_CATHODE  1
 
-LEDdigits :: LEDdigits(int a, int b, int c, int d, int e, int f, int g,int periodf, int d1, int d2, int d3, int d4){
+LEDdigits :: LEDdigits(int mode1,int a, int b, int c, int d, int e, int f, int g,int periodf, int d1, int d2, int d3, int d4){
     pinA = a; pinB = b; pinC = c; pinD = d;
     pinE = e; pinF = f; pinG = g; period = periodf;
-    D1 = d1; D2 = d2;D3 = d3; D4 = d4;
+    D1 = d1; D2 = d2;D3 = d3; D4 = d4;mode=mode1; 
 }
 
-LEDdigits ::LEDdigits(int a, int b, int c, int d, int e, int f, int g, int periodf, int d1)
+LEDdigits ::LEDdigits(int mode1,int a, int b, int c, int d, int e, int f, int g, int periodf)
 {
     pinA = a; pinB = b; pinC = c; pinD = d;period = periodf;
-    pinE = e; pinF = f; pinG = g; D1 = d1;
+    pinE = e; pinF = f; pinG = g; mode = mode1;
+
 }
 
 void LEDdigits :: setPins(int n = 4){
@@ -22,8 +25,8 @@ void LEDdigits :: setPins(int n = 4){
     pinMode(pinF, OUTPUT);
     pinMode(pinG, OUTPUT);
     pinMode(period,OUTPUT);
-    pinMode(D1, OUTPUT);
     if(n==4){
+        pinMode(D1, OUTPUT);
         pinMode(D2, OUTPUT);
         pinMode(D3, OUTPUT);
         pinMode(D4, OUTPUT);
@@ -34,120 +37,120 @@ void LEDdigits :: digit(int n){
     switch (n)
     {
     case 1:
-        digitalWrite(pinA, HIGH);
-        digitalWrite(pinB, HIGH);
-        digitalWrite(pinC, HIGH);
-        digitalWrite(pinD, HIGH);
-        digitalWrite(pinE, LOW);
-        digitalWrite(pinF, LOW);
-        digitalWrite(pinG, HIGH);
-        digitalWrite(period,HIGH);
+        digitalWrite(pinA, !mode);
+        digitalWrite(pinB, !mode);
+        digitalWrite(pinC, !mode);
+        digitalWrite(pinD, !mode);
+        digitalWrite(pinE, mode);
+        digitalWrite(pinF, mode);
+        digitalWrite(pinG, !mode);
+        digitalWrite(period,!mode);
         break;
     case 2:
-        digitalWrite(pinA, LOW);
-        digitalWrite(pinB, LOW);
-        digitalWrite(pinC, HIGH);
-        digitalWrite(pinD, LOW);
-        digitalWrite(pinE, LOW);
-        digitalWrite(pinF, HIGH);
-        digitalWrite(pinG, LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, mode);
+        digitalWrite(pinB, mode);
+        digitalWrite(pinC, !mode);
+        digitalWrite(pinD, mode);
+        digitalWrite(pinE, mode);
+        digitalWrite(pinF, !mode);
+        digitalWrite(pinG, mode);
+        digitalWrite(period, !mode);
         break;
 
     case 3:
-        digitalWrite(pinA, LOW);
-        digitalWrite(pinB, LOW);
-        digitalWrite(pinC, LOW);
-        digitalWrite(pinD, LOW);
-        digitalWrite(pinE, HIGH);
-        digitalWrite(pinF, HIGH);
-        digitalWrite(pinG, LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, mode);
+        digitalWrite(pinB, mode);
+        digitalWrite(pinC, mode);
+        digitalWrite(pinD, mode);
+        digitalWrite(pinE, !mode);
+        digitalWrite(pinF, !mode);
+        digitalWrite(pinG, mode);
+        digitalWrite(period, !mode);
         break;
     case 4:
-        digitalWrite(pinA, HIGH);
-        digitalWrite(pinB, LOW);
-        digitalWrite(pinC, LOW);
-        digitalWrite(pinD, HIGH);
-        digitalWrite(pinE, HIGH);
-        digitalWrite(pinF, LOW);
-        digitalWrite(pinG, LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, !mode);
+        digitalWrite(pinB, mode);
+        digitalWrite(pinC, mode);
+        digitalWrite(pinD, !mode);
+        digitalWrite(pinE, !mode);
+        digitalWrite(pinF, mode);
+        digitalWrite(pinG, mode);
+        digitalWrite(period, !mode);
         break;
 
     case 5:
-        digitalWrite(pinA, LOW);
-        digitalWrite(pinB, HIGH);
-        digitalWrite(pinC, LOW);
-        digitalWrite(pinD, LOW);
-        digitalWrite(pinE, HIGH);
-        digitalWrite(pinF, LOW);
-        digitalWrite(pinG, LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, mode);
+        digitalWrite(pinB, !mode);
+        digitalWrite(pinC, mode);
+        digitalWrite(pinD, mode);
+        digitalWrite(pinE, !mode);
+        digitalWrite(pinF, mode);
+        digitalWrite(pinG, mode);
+        digitalWrite(period, !mode);
         break;
 
     case 6:
-        digitalWrite(pinA, LOW);
-        digitalWrite(pinB, HIGH);
-        digitalWrite(pinC, LOW);
-        digitalWrite(pinD, LOW);
-        digitalWrite(pinE, LOW);
-        digitalWrite(pinF, LOW);
-        digitalWrite(pinG, LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, mode);
+        digitalWrite(pinB, !mode);
+        digitalWrite(pinC, mode);
+        digitalWrite(pinD, mode);
+        digitalWrite(pinE, mode);
+        digitalWrite(pinF, mode);
+        digitalWrite(pinG, mode);
+        digitalWrite(period, !mode);
         break;
 
     case 7:
-        digitalWrite(pinA,LOW);
-        digitalWrite(pinB,LOW);
-        digitalWrite(pinC,LOW);
-        digitalWrite(pinD,HIGH);
-        digitalWrite(pinE,HIGH);
-        digitalWrite(pinF,HIGH);
-        digitalWrite(pinG,HIGH);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA,mode);
+        digitalWrite(pinB,mode);
+        digitalWrite(pinC,mode);
+        digitalWrite(pinD,!mode);
+        digitalWrite(pinE,!mode);
+        digitalWrite(pinF,!mode);
+        digitalWrite(pinG,!mode);
+        digitalWrite(period, !mode);
         break;
     case 8:
-        digitalWrite(pinA, LOW);
-        digitalWrite(pinB, LOW);
-        digitalWrite(pinC, LOW);
-        digitalWrite(pinD, LOW);
-        digitalWrite(pinE, LOW);
-        digitalWrite(pinF, LOW);
-        digitalWrite(pinG, LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, mode);
+        digitalWrite(pinB, mode);
+        digitalWrite(pinC, mode);
+        digitalWrite(pinD, mode);
+        digitalWrite(pinE, mode);
+        digitalWrite(pinF, mode);
+        digitalWrite(pinG, mode);
+        digitalWrite(period, !mode);
         break;
 
     case 9:
-        digitalWrite(pinA,LOW);
-        digitalWrite(pinB,LOW);
-        digitalWrite(pinC,LOW);
-        digitalWrite(pinD,HIGH);
-        digitalWrite(pinE,HIGH);
-        digitalWrite(pinF,LOW);
-        digitalWrite(pinG,LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA,mode);
+        digitalWrite(pinB,mode);
+        digitalWrite(pinC,mode);
+        digitalWrite(pinD,!mode);
+        digitalWrite(pinE,!mode);
+        digitalWrite(pinF,mode);
+        digitalWrite(pinG,mode);
+        digitalWrite(period, !mode);
         break;
     case 0:
-        digitalWrite(pinA, LOW);
-        digitalWrite(pinB, LOW);
-        digitalWrite(pinC, LOW);
-        digitalWrite(pinD, LOW);
-        digitalWrite(pinE, LOW);
-        digitalWrite(pinF, LOW);
-        digitalWrite(pinG, HIGH);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, mode);
+        digitalWrite(pinB, mode);
+        digitalWrite(pinC, mode);
+        digitalWrite(pinD, mode);
+        digitalWrite(pinE, mode);
+        digitalWrite(pinF, mode);
+        digitalWrite(pinG, !mode);
+        digitalWrite(period, !mode);
         break;
 
     default:
-        digitalWrite(pinA, LOW);
-        digitalWrite(pinB, LOW);
-        digitalWrite(pinC, LOW);
-        digitalWrite(pinD, LOW);
-        digitalWrite(pinE, LOW);
-        digitalWrite(pinF, LOW);
-        digitalWrite(pinG, LOW);
-        digitalWrite(period, HIGH);
+        digitalWrite(pinA, mode);
+        digitalWrite(pinB, mode);
+        digitalWrite(pinC, mode);
+        digitalWrite(pinD, mode);
+        digitalWrite(pinE, mode);
+        digitalWrite(pinF, mode);
+        digitalWrite(pinG, mode);
+        digitalWrite(period, mode);
         break;
     }
 }
